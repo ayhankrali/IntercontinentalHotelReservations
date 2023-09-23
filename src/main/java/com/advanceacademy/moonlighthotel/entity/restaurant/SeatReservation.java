@@ -5,17 +5,18 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-
 import java.time.*;
+import java.util.Set;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Builder
-@Table(name = "table_reservations")
-public class TableReservation {
+@Table(name = "seat_reservations")
+public class SeatReservation {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
@@ -30,12 +31,10 @@ public class TableReservation {
     @Column(name = "price")
     private Double price;
 
-    @ManyToOne
-    @JoinColumn(name = "table_restaurant_number")
-    private TableRestaurant table;
-
-    @Column(name = "count_people")
-    private Integer countPeople;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "reservation_seat", joinColumns = {@JoinColumn(name = "reservation_id")},
+            inverseJoinColumns = {@JoinColumn(name = "seat_id")})
+    private Set<SeatRestaurant> seats;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
