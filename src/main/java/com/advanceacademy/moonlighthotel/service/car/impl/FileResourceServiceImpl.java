@@ -99,7 +99,7 @@ public class FileResourceServiceImpl implements FileResourceService {
     }
 
     public byte[] readImageFromFileOrSource(String carCategory, String imageName) throws IOException {
-        String carCategoryImagesFolder = carCategory + "\\";
+        String carCategoryImagesFolder = "src/main/resources/" + carCategory + "\\";
 
         String carCategoryImagePath = carCategoryImagesFolder + imageName;
 
