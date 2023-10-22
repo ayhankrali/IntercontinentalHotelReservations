@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/restaurant-bar-seat")
 public class SeatRestaurantController{
+
+
     @Autowired
     private SeatRestaurantService seatRestaurantService;
 
